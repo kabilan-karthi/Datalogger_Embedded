@@ -1,23 +1,75 @@
-* Netlist for LoRa Tag Module
-* Generated for 8 main components
+(export (version D)
+  (components
+    (comp (ref U1) (value LM2596) (footprint Package_TO_SOT_THT:TO-220-5) (fields (field (name Value) LM2596)))
+    (comp (ref U2) (value ADXL362) (footprint Module:ADXL362_BOB))
+    (comp (ref U3) (value MCP2562) (footprint Package_SO:SOIC-8_3.9x4.9mm_P1.27mm))
+    (comp (ref U4) (value Teensy4.1) (footprint Module:Teensy41))
+    (comp (ref J1) (value DB9_Male) (footprint Connector_Dsub:DSUB-9_Male))
+    (comp (ref J2) (value USB_B) (footprint Connector_USB:USB_B))
+    (comp (ref D1) (value 1N5822) (footprint Diode_THT:D_DO-201AD_P15.24mm_Horizontal))
+    (comp (ref D2) (value LED) (footprint LED_THT:LED_D5.0mm))
+    (comp (ref D3) (value LED) (footprint LED_THT:LED_D5.0mm))
+    (comp (ref R1) (value 330) (footprint Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm))
+    (comp (ref R2) (value 220) ...)
+    (comp (ref R3) (value 1k) ...)
+    (comp (ref R4) (value 1k) ...)
+    ...
+    (comp (ref C1) (value 0.1uF) ...)
+    (comp (ref C2) (value 100uF) ...)
+    (comp (ref C3) (value 330uF) ...)
+    (comp (ref C4) (value 10uF) ...)
+    (comp (ref C5) (value 0.1uF) ...)
+    (comp (ref C6) (value 10uF) ...)
+    (comp (ref C7) (value 22uF) ...)
+    (comp (ref C8) (value 100nF) ...)
+  )
 
-V1 IN 0 DC 12V
-U1 IN OUT LM2596S
-C1 OUT GND 10uF
-C2 IN GND 0.1uF
-
-U2 VCC GND Teensy4.1
-U3 CANH CANL MCP2562
-U4 VCC GND ADXL362
-
-J1 USB_P USB_N USB-B
-D1 OUT LED1 Generic_LED
-R1 LED1 GND 220
-
-R2 VIN ADC_IN 10k
-R3 ADC_IN GND 10k
-
-C3 VCC GND 0.1uF
-C4 VCC GND 0.1uF
-C5 VCC GND 10uF
+  (nets
+    (net (code 1) (name GND)
+      (node (ref U1) (pin 3))
+      (node (ref U2) (pin 8))
+      (node (ref U3) (pin 2))
+      (node (ref U4) (pin 23)) ; Teensy GND
+      (node (ref J2) (pin 4)) ; USB GND
+      ...
+    )
+    (net (code 2) (name +12V)
+      (node (ref U1) (pin 1))
+      (node (ref J1) (pin 9))
+    )
+    (net (code 3) (name +5V)
+      (node (ref U3) (pin 8)) ; Vio
+      (node (ref U4) (pin 31)) ; 5V power pin
+    )
+    (net (code 4) (name +3V3)
+      (node (ref U2) (pin 8)) ; VCC
+      (node (ref U4) (pin 14))
+    )
+    (net (code 5) (name MOSI)
+      (node (ref U2) (pin 5))
+      (node (ref U4) (pin 11))
+    )
+    (net (code 6) (name MISO)
+      (node (ref U2) (pin 4))
+      (node (ref U4) (pin 12))
+    )
+    (net (code 7) (name SCK)
+      (node (ref U2) (pin 6))
+      (node (ref U4) (pin 13))
+    )
+    (net (code 8) (name CS)
+      (node (ref U2) (pin 7))
+      (node (ref U4) (pin 10))
+    )
+    (net (code 9) (name CANH)
+      (node (ref U3) (pin 7))
+      (node (ref J1) (pin 2))
+    )
+    (net (code 10) (name CANL)
+      (node (ref U3) (pin 6))
+      (node (ref J1) (pin 3))
+    )
+    ...
+  )
+)
 
